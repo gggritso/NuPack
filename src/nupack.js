@@ -17,7 +17,6 @@ function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount
   if ( typeof basePrice === 'string' ) {
     basePrice = parsePrice( basePrice );
   } else if ( typeof basePrice !== 'number' ) {
-    console.log( typeof basePrice );
     throw new Error( 'basePrice should be float or string' );
   }
 
