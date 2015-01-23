@@ -21,7 +21,7 @@ function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount
   }
 
   if ( !categoryName ) categoryName = '';
-  if ( !requiredPersonnelCount ) requiredPersonnelCount = 0;
+  if ( !requiredPersonnelCount ) requiredPersonnelCount = 1;
 
   basePrice = basePrice + getFlatMarkup( basePrice );
   var newPrice = basePrice + getPersonnelMarkup( basePrice, requiredPersonnelCount );
