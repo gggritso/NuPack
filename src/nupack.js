@@ -1,5 +1,3 @@
-var parsePrice = require( './priceParser.js' ).parse;
-
 // CONSTANTS
 FLAT_MARKUP = 0.05;
 PERSONNEL_MARKUP = 0.012;
@@ -10,11 +8,11 @@ CATEGORY_MARKUPS = {
   electronics: 0.02
 };
 
-// PRIVATE FUNCTIONS
+// PUBLIC FUNCTIONS
 function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount ) {
 
   // check parameters on API-facing function
-  if ( !basePrice ) throw new Error( 'no price specified' );
+  if ( !basePrice ) throw new Error( 'no basePrice specified' );
 
   if ( typeof basePrice === 'string' ) {
     basePrice = parsePrice( basePrice );
@@ -35,6 +33,9 @@ function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount
   return Math.round( newPrice * 100, 2 ) / 100;
 }
 
+// PRIVATE FUNCTIONS
+var parsePrice = require( './priceParser.js' ).parse;
+
 function getFlatMarkup( basePrice ) {
   return basePrice * FLAT_MARKUP;
 }
@@ -44,6 +45,7 @@ function getPersonnelMarkup( basePrice, personnelCount ) {
 }
 
 function getCategoryMarkup( basePrice, categoryName ) {
+  categoryName = categoryName.toLowerCase().replace( /\s/g, '' );
   return basePrice * ( CATEGORY_MARKUPS[ categoryName ] || 0 );
 }
 

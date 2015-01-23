@@ -6,11 +6,11 @@ describe( 'NuPack error suite', function() {
 
       expect( function() {
         getProjectCostEstimate();
-      }).toThrowError( 'no price specified' );
+      }).toThrowError( 'no basePrice specified' );
 
   });
 
-  it( 'should error on no malformed price', function() {
+  it( 'should error on malformed price', function() {
 
     expect( function() {
       getProjectCostEstimate({ hey: 'hey' });
@@ -28,6 +28,14 @@ describe( 'NuPack success suite', function() {
 
   it( 'should calculate food markup successfully from float', function() {
     expect( getProjectCostEstimate( 1299.99, 'food', 3 ) ).toEqual( 1591.58 );
+  });
+
+  it( 'should accept poor casing of category', function() {
+    expect( getProjectCostEstimate( 1299.99, 'FoOd', 3 ) ).toEqual( 1591.58 );
+  });
+
+  it( 'should accept dirty categories', function() {
+    expect( getProjectCostEstimate( 1299.99, ' FoOd  ', 3 ) ).toEqual( 1591.58 );
   });
 
   it( 'should calculate drug markup successfully', function() {
