@@ -30,7 +30,7 @@ function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount
 
   // FIXME: There are bugs in rounding in JavaScript, MDN has a workaround at
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
-  return Math.round( newPrice * 100, 2 ) / 100;
+  return roundPrice( newPrice );
 }
 
 // PRIVATE FUNCTIONS
@@ -47,6 +47,10 @@ function getPersonnelMarkup( basePrice, personnelCount ) {
 function getCategoryMarkup( basePrice, categoryName ) {
   categoryName = categoryName.toLowerCase().replace( /\s/g, '' );
   return basePrice * ( CATEGORY_MARKUPS[ categoryName ] || 0 );
+}
+
+function roundPrice( price ) {
+  return Math.round( price * 100, 2 ) / 100;
 }
 
 // EXPOSURE
