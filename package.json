@@ -1,0 +1,29 @@
+{
+  "name": "NuPack",
+  "version": "0.0.1",
+  "description": "Re-packaging markup calculator.",
+  "private": true,
+  "main": "src/nupack.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gggritso/NuPack.git"
+  },
+  "keywords": [
+    "nulogy"
+  ],
+  "author": "George Gritsouk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gggritso/NuPack/issues"
+  },
+  "homepage": "https://github.com/gggritso/NuPack",
+  "devDependencies": {
+    "jasmine": "^2.1.1"
+  }
+}
