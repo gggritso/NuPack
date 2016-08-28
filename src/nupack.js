@@ -1,13 +1,3 @@
-// CONSTANTS
-FLAT_MARKUP = 0.05;
-PERSONNEL_MARKUP = 0.012;
-CATEGORY_MARKUPS = {
-  '': 0,
-  drugs: 0.075,
-  food: 0.13,
-  electronics: 0.02
-};
-
 // PUBLIC FUNCTIONS
 function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount ) {
 
@@ -33,19 +23,21 @@ function getProjectCostEstimate( basePrice, categoryName, requiredPersonnelCount
 }
 
 // PRIVATE FUNCTIONS
-var parsePrice = require( './priceParser.js' ).parse;
+var
+  parsePrice = require( './priceParser.js' ).parse,
+  MARKUPS = require( './markups' );
 
 function getFlatMarkup( basePrice ) {
-  return basePrice * FLAT_MARKUP;
+  return basePrice * MARKUPS.FLAT;
 }
 
 function getPersonnelMarkup( basePrice, personnelCount ) {
-  return basePrice * ( PERSONNEL_MARKUP * personnelCount );
+  return basePrice * ( MARKUPS.PERSONNEL * personnelCount );
 }
 
 function getCategoryMarkup( basePrice, categoryName ) {
   categoryName = categoryName.toLowerCase().replace( /\s/g, '' );
-  return basePrice * ( CATEGORY_MARKUPS[ categoryName ] || 0 );
+  return basePrice * ( MARKUPS.CATEGORIES[ categoryName ] || 0 );
 }
 
 function roundPrice( price ) {
